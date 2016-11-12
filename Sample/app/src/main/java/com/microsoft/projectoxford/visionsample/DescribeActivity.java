@@ -47,7 +47,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.microsoft.projectoxford.vision.VisionServiceClient;
 import com.microsoft.projectoxford.vision.VisionServiceRestClient;
@@ -58,6 +66,8 @@ import com.microsoft.projectoxford.vision.contract.Tag;
 import com.microsoft.projectoxford.vision.contract.Caption;
 import com.microsoft.projectoxford.vision.rest.VisionServiceException;
 import com.microsoft.projectoxford.visionsample.helper.ImageHelper;
+
+import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -247,6 +257,30 @@ public class DescribeActivity extends ActionBarActivity {
                         public void onClick(View view) {
                             String buttonText = newButton.getText().toString();
                             Log.i("label", buttonText);
+
+                            //final TextView mTextView = (TextView) findViewById(R.id.text);
+
+                            // Instantiate the RequestQueue.
+                            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                            String url ="https://nutrition-slug.herokuapp.com/return/banana";
+
+                            // Request a string response from the provided URL.
+                            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            // Display the first 500 characters of the response string.
+                                            Log.i("Label: ", response);
+                                            //mTextView.setText("Response is: "+ response.substring(0,500));
+                                        }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    //mTextView.setText("That didn't work!");
+                                }
+                            });
+                            // Add the request to the RequestQueue.
+                            queue.add(stringRequest);
                         }
                     });
                     linearLayout.addView(newButton);
