@@ -203,6 +203,13 @@ public class DescribeActivity extends ActionBarActivity {
             return null;
         }
 
+        public void onClick(View v) {
+            // 1) Possibly check for instance of first
+            Button b = (Button)v;
+            String buttonText = b.getText().toString();
+            Log.i("label", buttonText);
+        }
+
         @Override
         protected void onPostExecute(String data) {
             super.onPostExecute(data);
@@ -229,10 +236,19 @@ public class DescribeActivity extends ActionBarActivity {
                 */
 
                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.editTextResult);
+                int i=0;
                 for (String tag: result.description.tags) {
                     //mEditText.append(tag + "\n");
-                    Button newButton = new Button(getApplicationContext());
+                    Log.i("Labeltag", tag);
+                    final Button newButton = new Button(getApplicationContext());
                     newButton.setText(tag);
+                    newButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String buttonText = newButton.getText().toString();
+                            Log.i("label", buttonText);
+                        }
+                    });
                     linearLayout.addView(newButton);
 
                 }
