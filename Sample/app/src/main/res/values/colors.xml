@@ -3,5 +3,5 @@
 <resources>
     <color name="button_pressed_background">#66B2FF</color>
     <color name="button_enabled_background">#3399FF</color>
-    <color name="button_disabled_background">#C0C0C0</color>
+    <color name="button_disabled_background">#52bdd8</color>
 </resources>
