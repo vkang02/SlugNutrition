@@ -37,6 +37,7 @@
                 android:value="com.microsoft.projectoxford.visionsample.AnalyzeInDomainActivity" />
         </activity>
         <activity
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:name=".DescribeActivity"
             android:label="@string/title_activity_describe"
             android:parentActivityName=".MainActivity" >
@@ -46,6 +47,7 @@
         </activity>
         <activity
             android:name=".RecognizeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_recognize"
             android:parentActivityName=".MainActivity" >
             <meta-data
