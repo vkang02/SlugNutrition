@@ -32,6 +32,7 @@
 //
 package com.microsoft.projectoxford.visionsample;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -45,6 +46,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.microsoft.projectoxford.vision.VisionServiceClient;
@@ -90,7 +92,7 @@ public class DescribeActivity extends ActionBarActivity {
         }
 
         mButtonSelectImage = (Button)findViewById(R.id.buttonSelectImage);
-        mEditText = (EditText)findViewById(R.id.editTextResult);
+//        mEditText = (EditText)findViewById(R.id.editTextResult);
     }
 
     @Override
@@ -117,19 +119,19 @@ public class DescribeActivity extends ActionBarActivity {
 
     public void doDescribe() {
         mButtonSelectImage.setEnabled(false);
-        mEditText.setText("Describing...");
+//        mEditText.setText("Describing...");
 
         try {
             new doRequest().execute();
         } catch (Exception e)
         {
-            mEditText.setText("Error encountered. Exception is: " + e.toString());
+//            mEditText.setText("Error encountered. Exception is: " + e.toString());
         }
     }
 
     // Called when the "Select Image" button is clicked.
     public void selectImage(View view) {
-        mEditText.setText("");
+//        mEditText.setText("");
 
         Intent intent;
         intent = new Intent(DescribeActivity.this, com.microsoft.projectoxford.visionsample.helper.SelectImageActivity.class);
@@ -206,14 +208,15 @@ public class DescribeActivity extends ActionBarActivity {
             super.onPostExecute(data);
             // Display based on error existence
 
-            mEditText.setText("");
+//            mEditText.setText("");
             if (e != null) {
-                mEditText.setText("Error: " + e.getMessage());
+//                mEditText.setText("Error: " + e.getMessage());
                 this.e = null;
             } else {
                 Gson gson = new Gson();
                 AnalysisResult result = gson.fromJson(data, AnalysisResult.class);
 
+                /*
                 mEditText.append("Image format: " + result.metadata.format + "\n");
                 mEditText.append("Image width: " + result.metadata.width + ", height:" + result.metadata.height + "\n");
                 mEditText.append("\n");
@@ -223,14 +226,21 @@ public class DescribeActivity extends ActionBarActivity {
                 }
                 mEditText.append("\n");
 
-                for (String tag: result.description.tags) {
-                    mEditText.append("Tag: " + tag + "\n");
-                }
-                mEditText.append("\n");
+                */
 
-                mEditText.append("\n--- Raw Data ---\n\n");
-                mEditText.append(data);
-                mEditText.setSelection(0);
+                for (String tag: result.description.tags) {
+                    //mEditText.append(tag + "\n");
+                    Button newButton = new Button(getApplicationContext());
+                    newButton.setText(tag);
+                    linearLayout.addView(newButton);
+
+                }
+
+                // mEditText.append("\n");
+
+                // mEditText.append("\n--- Raw Data ---\n\n");
+                // mEditText.append(data);
+                // mEditText.setSelection(0);
             }
 
             mButtonSelectImage.setEnabled(true);
