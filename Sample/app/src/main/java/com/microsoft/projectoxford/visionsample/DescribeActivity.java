@@ -228,6 +228,7 @@ public class DescribeActivity extends ActionBarActivity {
 
                 */
 
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.editTextResult);
                 for (String tag: result.description.tags) {
                     //mEditText.append(tag + "\n");
                     Button newButton = new Button(getApplicationContext());
