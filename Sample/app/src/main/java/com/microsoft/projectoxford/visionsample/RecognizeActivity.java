@@ -62,6 +62,7 @@ import com.microsoft.projectoxford.visionsample.helper.ImageHelper;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class RecognizeActivity extends ActionBarActivity {
 
@@ -78,7 +79,8 @@ public class RecognizeActivity extends ActionBarActivity {
     private Bitmap mBitmap;
 
     // The edit to show status and result.
-    private EditText mEditText;
+//    private EditText mEditText;
+    private TextView mTextView;
 
     private VisionServiceClient client;
 
@@ -92,7 +94,8 @@ public class RecognizeActivity extends ActionBarActivity {
         }
 
         mButtonSelectImage = (Button)findViewById(R.id.buttonSelectImage);
-        mEditText = (EditText)findViewById(R.id.editTextResult);
+//        mEditText = (EditText)findViewById(R.id.editTextResult);
+        mTextView = (TextView) findViewById(R.id.ResultTextView);
     }
 
     @Override
@@ -119,7 +122,8 @@ public class RecognizeActivity extends ActionBarActivity {
 
     // Called when the "Select Image" button is clicked.
     public void selectImage(View view) {
-        mEditText.setText("");
+//        mEditText.setText("");
+        mTextView.setText("");
 
         Intent intent;
         intent = new Intent(RecognizeActivity.this, com.microsoft.projectoxford.visionsample.helper.SelectImageActivity.class);
@@ -159,13 +163,15 @@ public class RecognizeActivity extends ActionBarActivity {
 
     public void doRecognize() {
         mButtonSelectImage.setEnabled(false);
-        mEditText.setText("Analyzing...");
+//        mEditText.setText("Analyzing...");
+        mTextView.setText("Analyzing...");
 
         try {
             new doRequest().execute();
         } catch (Exception e)
         {
-            mEditText.setText("Error encountered. Exception is: " + e.toString());
+//            mEditText.setText("Error encountered. Exception is: " + e.toString());
+            mTextView.setText("Error encountered. Exception is: " + e.toString());
         }
     }
 
@@ -206,28 +212,58 @@ public class RecognizeActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(String data) {
+            final String[] Values = new String[] {
+                    "nutrition", "facts", "calories",
+                    "total", "fat", "saturated", "fat",
+                    "trans", "cholesterol", "sodium",
+                    "carbohydrate", "protein"
+            };
             super.onPostExecute(data);
             // Display based on error existence
 
             if (e != null) {
-                mEditText.setText("Error: " + e.getMessage());
+//                mEditText.setText("Error: " + e.getMessage());
+                mTextView.setText("Error: " + e.getMessage());
                 this.e = null;
             } else {
                 Gson gson = new Gson();
                 OCR r = gson.fromJson(data, OCR.class);
 
+                boolean keepRead = false;
+                boolean sawWord = false;
+                boolean sawProtein = false;
                 String result = "";
                 for (Region reg : r.regions) {
                     for (Line line : reg.lines) {
                         for (Word word : line.words) {
-                            result += word.text + " ";
+                            if(word.text.toLowerCase().equals("protein") ) sawProtein = true;
+                            if(Arrays.asList(Values).contains(word.text.toLowerCase())){
+                                sawWord = true;
+                                result += word.text + " ";
+                                keepRead = true;
+                            } else if (keepRead == true){
+                                if(word.text.toLowerCase().equals("og") ){
+                                    result += "0g" + " ";
+                                } else if(word.text.toLowerCase().equals("omg") ){
+                                    result += "0mg";
+                                }
+                            }
                         }
-                        result += "\n";
+                        if(sawWord)result += "\n";
+                        keepRead = false;
+                        sawWord = false;
                     }
-                    result += "\n\n";
+                    if(sawProtein){
+                        mTextView.setText(result);
+                        return;
+                    }
+
+                    result += "\n";
+                    sawWord = false;
                 }
 
-                mEditText.setText(result);
+//                mEditText.setText(result);
+                mTextView.setText(result);
             }
             mButtonSelectImage.setEnabled(true);
         }

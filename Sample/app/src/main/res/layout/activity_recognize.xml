@@ -25,13 +25,15 @@
             android:layout_margin="4dp"
             android:text="Select an image to recognize text"/>
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/blue"
                 android:text="Select Image"
                 android:id="@+id/buttonSelectImage"
                 android:onClick="selectImage"/>
@@ -54,13 +56,14 @@
             android:layout_gravity="right"
             android:layout_weight="1.03" >
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/editTextResult"
+                android:id="@+id/ResultTextView"
                 android:layout_weight="1" />
+
         </LinearLayout>
     </LinearLayout>
     </ScrollView>

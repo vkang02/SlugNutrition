@@ -19,6 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
+                android:textSize="20dp"
                 android:text="Select an image to analyze"/>
             <LinearLayout
                 android:orientation="vertical"
@@ -29,9 +30,9 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/blue"
                     android:layout_marginBottom="10dp"
                     android:text="Select Image"
-                    android:background="@color/blue"
                     android:id="@+id/buttonSelectImage"
                     android:onClick="selectImage"/>
 
@@ -42,6 +43,17 @@
                     android:layout_toRightOf="@+id/image_control"
                     android:layout_toEndOf="@+id/image_control"
                     android:background="#E0E0E0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Which food best describes your image?"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/nutriView"
+                    android:textSize="25dp"
+                    android:layout_height="wrap_content" />
+
 
             </LinearLayout>
 
