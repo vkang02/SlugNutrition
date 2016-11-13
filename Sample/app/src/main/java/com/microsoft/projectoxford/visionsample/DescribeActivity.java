@@ -47,6 +47,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -65,6 +66,8 @@ import com.microsoft.projectoxford.vision.contract.Face;
 import com.microsoft.projectoxford.vision.contract.Tag;
 import com.microsoft.projectoxford.vision.contract.Caption;
 import com.microsoft.projectoxford.vision.rest.VisionServiceException;
+import com.microsoft.projectoxford.visionsample.example.Food;
+import com.microsoft.projectoxford.visionsample.example.MyList;
 import com.microsoft.projectoxford.visionsample.helper.ImageHelper;
 
 import org.json.JSONObject;
@@ -72,6 +75,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class DescribeActivity extends ActionBarActivity {
 
@@ -262,17 +266,27 @@ public class DescribeActivity extends ActionBarActivity {
 
                             // Instantiate the RequestQueue.
                             RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                            String url ="https://nutrition-slug.herokuapp.com/return/banana";
+                            String url ="https://nutrition-slug.herokuapp.com/getFood/banana";
 
                             // Request a string response from the provided URL.
                             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {
+                                            ScrollView firstScroll = (ScrollView) findViewById(R.id.smartScrollView);
+                                            firstScroll.setVisibility(View.GONE);
                                             // Display the first 500 characters of the response string.
-                                            Gson gson = new Gson();
-
-                                            Log.i("Label: ", response);
+                                            Gson gson   = new Gson();
+                                            MyList list = gson.fromJson(response, MyList.class);
+//                                            Log.i("label", Arrays.toString(list.getMyList().toArray()));
+                                            for (Food food : list.getMyList()) {
+                                                Log.i("label", food.getName() + " " + food.getNdbno());
+                                                final Button newButton = new Button(getApplicationContext());
+                                                newButton.setText(food.getName());
+                                            }
+                                            // list.getMyList().toString();
+//                                            Log.i("label", list.getMyList().toString());
+                                            // Log.i("Label: ", response);
                                             //mTextView.setText("Response is: "+ response.substring(0,500));
                                         }
                                     }, new Response.ErrorListener() {

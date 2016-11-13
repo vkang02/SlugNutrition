@@ -21,14 +21,17 @@
                 android:layout_margin="4dp"
                 android:text="Select an image to analyze"/>
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="Select Image"
+                    android:background="@color/blue"
                     android:id="@+id/buttonSelectImage"
                     android:onClick="selectImage"/>
 
@@ -42,6 +45,11 @@
 
             </LinearLayout>
 
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:id="@+id/smartScrollView"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -52,6 +60,7 @@
 
 
             </LinearLayout>
+            </ScrollView>
         </LinearLayout>
     </ScrollView>
 

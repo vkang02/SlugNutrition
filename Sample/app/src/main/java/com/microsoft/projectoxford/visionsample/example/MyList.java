@@ -8,16 +8,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class MyList {
 
-    @SerializedName("myList")
+    @SerializedName("mylist")
     @Expose
-    private List<MyList> myList = new ArrayList<MyList>();
+    private List<Food> myList = new ArrayList<Food>();
 
     /**
      * 
      * @return
      *     The myList
      */
-    public List<MyList> getMyList() {
+    public List<Food> getMyList() {
         return myList;
     }
 
@@ -26,7 +26,7 @@ public class MyList {
      * @param myList
      *     The myList
      */
-    public void setMyList(List<MyList> myList) {
+    public void setMyList(List<Food> myList) {
         this.myList = myList;
     }
 

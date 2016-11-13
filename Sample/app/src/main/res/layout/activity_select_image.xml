@@ -26,28 +26,31 @@
 
         <Button
             android:id="@+id/button_take_a_photo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/take_photo"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
             android:onClick="takePhoto"
-            style="@style/ButtonStyle" />
-    </RelativeLayout>
-
-    <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+            style="@style/ButtonStyle"
+            android:layout_marginTop="155dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/button_select_a_photo_in_album"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/select_image_in_album"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:onClick="selectImageInAlbum"
-            style="@style/ButtonStyle" />
+            style="@style/ButtonStyle"
+            android:layout_marginTop="34dp"
+            android:layout_below="@+id/button_take_a_photo"
+            android:layout_alignStart="@+id/button_take_a_photo" />
+
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
     </RelativeLayout>
 
 </LinearLayout>

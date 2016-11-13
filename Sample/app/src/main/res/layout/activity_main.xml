@@ -33,15 +33,19 @@
         android:layout_height="0dip"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Describe Image"
+            android:layout_marginRight="15dp"
             android:id="@+id/button_describe"
             android:layout_gravity="bottom"
-            android:onClick="activityDescribe" />
+            android:onClick="activityDescribe"
+            android:background="#f5de05"
+            android:layout_weight="0.24" />
 
         <Button
             android:layout_width="wrap_content"
@@ -49,7 +53,9 @@
             android:text="Recognize Text"
             android:id="@+id/button_recognize"
             android:layout_gravity="bottom"
-            android:onClick="activityRecognize" />
+            android:onClick="activityRecognize"
+            android:background="#f5de05"
+            android:layout_weight="0.16" />
     </LinearLayout>
        <!-- <Button
             android:layout_width="wrap_content"
