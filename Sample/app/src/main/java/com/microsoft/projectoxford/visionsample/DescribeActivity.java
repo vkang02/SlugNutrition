@@ -47,6 +47,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -65,6 +66,18 @@ import com.microsoft.projectoxford.vision.contract.Face;
 import com.microsoft.projectoxford.vision.contract.Tag;
 import com.microsoft.projectoxford.vision.contract.Caption;
 import com.microsoft.projectoxford.vision.rest.VisionServiceException;
+import com.microsoft.projectoxford.visionsample.Nutrients.Cholesterol;
+import com.microsoft.projectoxford.visionsample.Nutrients.DietaryFiber;
+import com.microsoft.projectoxford.visionsample.Nutrients.Kcal;
+import com.microsoft.projectoxford.visionsample.Nutrients.MyNutrients;
+import com.microsoft.projectoxford.visionsample.Nutrients.Nutrients;
+import com.microsoft.projectoxford.visionsample.Nutrients.Protein;
+import com.microsoft.projectoxford.visionsample.Nutrients.Sodium;
+import com.microsoft.projectoxford.visionsample.Nutrients.Sugars;
+import com.microsoft.projectoxford.visionsample.Nutrients.TotalCarbohydrate;
+import com.microsoft.projectoxford.visionsample.Nutrients.TotalFat;
+import com.microsoft.projectoxford.visionsample.example.Food;
+import com.microsoft.projectoxford.visionsample.example.MyList;
 import com.microsoft.projectoxford.visionsample.helper.ImageHelper;
 
 import org.json.JSONObject;
@@ -72,6 +85,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class DescribeActivity extends ActionBarActivity {
 
@@ -262,17 +276,132 @@ public class DescribeActivity extends ActionBarActivity {
 
                             // Instantiate the RequestQueue.
                             RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                            String url ="https://nutrition-slug.herokuapp.com/return/banana";
+                            String url ="https://nutrition-slug.herokuapp.com/getFood/"+buttonText;
+
+                            Log.i("label", url);
 
                             // Request a string response from the provided URL.
                             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {
+                                            ScrollView firstScroll = (ScrollView) findViewById(R.id.smartScrollView);
+                                            firstScroll.setVisibility(View.GONE);
                                             // Display the first 500 characters of the response string.
-                                            Gson gson = new Gson();
+                                            Log.i("label", response);
+                                            Gson gson   = new Gson();
+                                            Nutrients nutrientsObj = gson.fromJson(response, Nutrients.class);
+                                            MyNutrients nutrients = nutrientsObj.getMyNutrients();
 
-                                            Log.i("Label: ", response);
+//                                            MyNutrients nutrients = gson.fromJson(response, MyNutrients.class);
+
+//                                            Cholesterol cholesterol = nutrients.getCholesterol();
+//                                            DietaryFiber dietaryFiber = nutrients.getDietaryFiber();
+//                                            Kcal kcal = nutrients.getKcal();
+
+                                            //Log.i("label", "Protein " + nutrients.getProtein().getName());
+//                                            Sodium sodium = nutrients.getSodium();
+//                                            Sugars sugars = nutrients.getSugars();
+//                                            TotalCarbohydrate carbohydrate = nutrients.getTotalCarbohydrate();
+//                                            TotalFat fat = nutrients.getTotalFat();
+
+                                            TextView nutriView = (TextView) findViewById(R.id.nutriView);
+                                            String nutriString = "";
+//
+                                            try {
+                                                if(nutrients.getSodium().getName() != null){
+                                                    Log.i("label", "sodium " + nutrients.getSodium().getName() );
+                                                    nutriString += "sodium: " + nutrients.getSodium().getValue() + nutrients.
+                                                            getSodium().getUnit() + "\n";
+                                                }
+                                            } catch(Exception exception){}
+
+                                            try {
+                                                if(nutrients.getCholesterol().getName() != null){
+                                                    Log.i("label", "sodium " + nutrients.getCholesterol().getName() );
+                                                    nutriString += "Cholesterol: " + nutrients.getCholesterol().getValue() + nutrients.
+                                                            getCholesterol().getUnit() + "\n";
+                                                }
+                                            } catch (Exception exception) {
+
+                                            }
+                                            try {
+                                                if(nutrients.getDietaryFiber().getName() != null){
+                                                    Log.i("label", "sodium " + nutrients.getDietaryFiber().getName() );
+                                                    nutriString += "Fiber: " + nutrients.getDietaryFiber().getValue() + nutrients.
+                                                            getDietaryFiber().getUnit() + "\n";
+
+                                                }
+                                            } catch (Exception exception) {
+
+                                            }
+                                            try {
+                                                if(nutrients.getProtein().getName() != null){
+                                                    Log.i("label", "sodium " + nutrients.getProtein().getName() );
+                                                    nutriString += "Protein: " + nutrients.getProtein().getValue() + nutrients.
+                                                            getProtein().getUnit() + "\n";
+                                                }
+                                            } catch (Exception exception) {
+
+                                            }
+                                            try {
+                                                if(nutrients.getSugars().getName() != null){
+                                                    Log.i("label", "getSugars" + nutrients.getSugars().getName() );
+                                                    nutriString += "Sugar: " + nutrients.getSugars().getValue() + nutrients.
+                                                            getSugars().getUnit() + "\n";
+                                                }
+                                            } catch (Exception exception) {
+
+                                            }
+                                            try {
+                                                if(nutrients.getTotalFat().getName() != null){
+                                                    Log.i("label", "getTotalFat" + nutrients.getTotalFat().getName() );
+                                                    nutriString += "Fat: " + nutrients.getTotalFat().getValue() + nutrients.
+                                                            getTotalFat().getUnit() + "\n";
+                                                }
+                                            } catch (Exception exception) {
+
+                                            }
+                                            try {
+                                                if(nutrients.getTotalCarbohydrate().getName() != null){
+                                                    Log.i("label", "getTotalCarbohydrate" + nutrients.getTotalCarbohydrate().getName() );
+                                                    nutriString += "Carbs: " + nutrients.getTotalCarbohydrate().getValue() + nutrients.
+                                                            getTotalCarbohydrate().getUnit() + "\n";
+                                                }
+                                            } catch (Exception exception) {
+
+                                            }
+
+                                            nutriView.setText(nutriString);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            //MyList list = gson.fromJson(response, MyList.class);
+//                                            Log.i("label", Arrays.toString(list.getMyList().toArray()));
+
+
+                                            //for (Food food : list.getMyList()) {
+                                            //    Log.i("label", food.getName() + " " + food.getNdbno());
+                                            //}
+                                            // list.getMyList().toString();
+//                                            Log.i("label", list.getMyList().toString());
+                                            // Log.i("Label: ", response);
                                             //mTextView.setText("Response is: "+ response.substring(0,500));
                                         }
                                     }, new Response.ErrorListener() {

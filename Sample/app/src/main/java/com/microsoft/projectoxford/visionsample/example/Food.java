@@ -49,4 +49,11 @@ public class Food{
         this.ndbno = ndbno;
     }
 
+    @Override
+    public String toString() {
+        return "Food{" +
+                "name='" + name + '\'' +
+                ", ndbno='" + ndbno + '\'' +
+                '}';
+    }
 }
