@@ -270,6 +270,8 @@ public class DescribeActivity extends ActionBarActivity {
                                         @Override
                                         public void onResponse(String response) {
                                             // Display the first 500 characters of the response string.
+                                            Gson gson = new Gson();
+
                                             Log.i("Label: ", response);
                                             //mTextView.setText("Response is: "+ response.substring(0,500));
                                         }

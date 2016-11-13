@@ -1,0 +1,57 @@
+package com.microsoft.projectoxford.visionsample;
+
+/**
+ * Created by micha on 11/12/2016.
+ */
+// package com.example;
+
+        import com.google.gson.annotations.Expose;
+        import com.google.gson.annotations.SerializedName;
+
+public class Food {
+
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("ndbno")
+    @Expose
+    private String ndbno;
+
+    /**
+     *
+     * @return
+     *     The name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     *
+     * @param name
+     *     The name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     *
+     * @return
+     *     The ndbno
+     */
+    public String getNdbno() {
+        return ndbno;
+    }
+
+    /**
+     *
+     * @param ndbno
+     *     The ndbno
+     */
+    public void setNdbno(String ndbno) {
+        this.ndbno = ndbno;
+    }
+
+}
+

@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="Describe Image"
             android:id="@+id/button_describe"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="bottom"
             android:onClick="activityDescribe" />
 
         <Button
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="Recognize Text"
             android:id="@+id/button_recognize"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="bottom"
             android:onClick="activityRecognize" />
     </LinearLayout>
        <!-- <Button

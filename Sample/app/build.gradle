@@ -26,5 +26,7 @@ dependencies {
     //
     compile 'com.microsoft.projectoxford:vision:1.0.354'
     compile 'com.android.support:appcompat-v7:21.0.3'
-    compile files('libs/gson-2.3.1.jar')
+    // compile files('libs/gson-2.3.1.jar')
+    compile 'com.android.volley:volley:1.0.0'
+    compile 'com.google.code.gson:gson:2.4'
 }
