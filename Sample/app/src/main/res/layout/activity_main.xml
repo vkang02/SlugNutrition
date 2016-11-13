@@ -36,6 +36,17 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
+        <ImageView
+            android:id="@+id/x2"
+            android:src="@drawable/logo"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+
+            />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,6 +65,15 @@
             android:id="@+id/button_recognize"
             android:layout_gravity="bottom"
             android:onClick="activityRecognize"
+            android:background="#f5de05"
+            android:layout_weight="0.16" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daily Nutrition Totals"
+            android:id="@+id/button_total"
+            android:layout_gravity="top"
+            android:onClick="activityTotal"
             android:background="#f5de05"
             android:layout_weight="0.16" />
     </LinearLayout>

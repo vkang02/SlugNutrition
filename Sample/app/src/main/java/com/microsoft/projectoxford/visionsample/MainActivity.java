@@ -83,6 +83,11 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void activityTotal(View v) {
+        Intent intent = new Intent(this, TotalActivity.class);
+        startActivity(intent);
+    }
+
     public void activityThumbnail(View v) {
         Intent intent = new Intent(this, ThumbnailActivity.class);
         startActivity(intent);

@@ -63,6 +63,15 @@
                 android:value="com.microsoft.projectoxford.visionsample.MainActivity" />
         </activity>
         <activity
+            android:name=".TotalActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_recognize"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.microsoft.projectoxford.visionsample.MainActivity" />
+        </activity>
+        <activity
             android:name=".helper.SelectImageActivity"
             android:label="@string/select_an_image"
             android:screenOrientation="portrait" />
