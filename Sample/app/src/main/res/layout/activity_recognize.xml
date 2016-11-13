@@ -33,7 +33,6 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
                 android:text="Select Image"
                 android:id="@+id/buttonSelectImage"
                 android:onClick="selectImage"/>
@@ -62,7 +61,8 @@
                 android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/ResultTextView"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_gravity="center"/>
 
         </LinearLayout>
     </LinearLayout>

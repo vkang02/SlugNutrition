@@ -11,6 +11,16 @@
         android:layout_height="match_parent"
         android:weightSum="1">
 
+        <ImageView
+            android:id="@+id/x2"
+            android:src="@drawable/logo"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+
+            />
       <!--  <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,6 +38,14 @@
             android:onClick="activityAnalyzeInDomain" /> -->
 
 
+        <TextView
+            android:text = "Click on one of the buttons below to find nutritional information"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
@@ -36,37 +54,29 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <ImageView
-            android:id="@+id/x2"
-            android:src="@drawable/logo"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:gravity="center"
-            android:scaleType="fitXY"
-            android:layout_gravity="center"
 
-            />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Describe Image"
+            android:text="Food Object"
             android:layout_marginRight="15dp"
             android:id="@+id/button_describe"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
             android:onClick="activityDescribe"
-            android:background="#f5de05"
-            android:layout_weight="0.24" />
+            android:background="#f5de05" />
+            <!-- android:layout_weight="0.01" -->
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recognize Text"
+            android:text="Food Label"
             android:id="@+id/button_recognize"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
             android:onClick="activityRecognize"
-            android:background="#f5de05"
-            android:layout_weight="0.16" />
+            android:background="#f5de05" />
+            <!-- android:layout_weight="0.01" -->
+        <!--
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,6 +86,7 @@
             android:onClick="activityTotal"
             android:background="#f5de05"
             android:layout_weight="0.16" />
+            -->
     </LinearLayout>
        <!-- <Button
             android:layout_width="wrap_content"

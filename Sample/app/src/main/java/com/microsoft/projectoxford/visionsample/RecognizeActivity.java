@@ -229,7 +229,7 @@ public class RecognizeActivity extends ActionBarActivity {
                 Gson gson = new Gson();
                 OCR r = gson.fromJson(data, OCR.class);
 
-                boolean keepRead = false;
+//                boolean keepRead = false;
                 boolean sawWord = false;
                 boolean sawProtein = false;
                 String result = "";
@@ -240,17 +240,24 @@ public class RecognizeActivity extends ActionBarActivity {
                             if(Arrays.asList(Values).contains(word.text.toLowerCase())){
                                 sawWord = true;
                                 result += word.text + " ";
-                                keepRead = true;
-                            } else if (keepRead == true){
+//                                keepRead = true;
+                            }
+                            else if (sawWord){
                                 if(word.text.toLowerCase().equals("og") ){
                                     result += "0g" + " ";
                                 } else if(word.text.toLowerCase().equals("omg") ){
                                     result += "0mg";
+                                } else {
+                                    result += word.text + " ";
                                 }
                             }
+
+//                            else if (keepRead == true){
+
+//                            }
                         }
                         if(sawWord)result += "\n";
-                        keepRead = false;
+//                        keepRead = false;
                         sawWord = false;
                     }
                     if(sawProtein){
